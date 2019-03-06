@@ -24,11 +24,6 @@ public class WordCountSum {
         @Validation.Required
         String getOutput();
         void setOutput(String value);
-
-        @Description("Word to search.")
-        @Validation.Required
-        String getWord();
-        void setWord(String value);
     }
 
     public static void main(String[] args) {
@@ -40,12 +35,12 @@ public class WordCountSum {
         pipeline.apply(TextIO.read().from("gs://apache-beam-samples/shakespeare/hamlet.txt"))
                 .apply(FlatMapElements.into(TypeDescriptors.strings())
                         .via((String word) -> Arrays.asList(word.split("[^\\p{L}]+"))))
-                .apply(Filter.by((String word) -> word.equals(options.getWord())))
+                .apply(Filter.by((String word) -> word.equals("orchard")))
                 .apply(Count.perElement())
                 .apply(MapElements.into(TypeDescriptors.strings())
                         .via((KV<String, Long> wc) ->
                                 wc.getKey() + ": " + wc.getValue()))
-                .apply(TextIO.write().to((options).getOutput()));
+                .apply(TextIO.write().to(options.getOutput()));
 
         pipeline.run().waitUntilFinish();
     }
