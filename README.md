@@ -1,6 +1,8 @@
 Cloud Dataflow samples 
 =
 
+This code samples demonstrate Cloud Dataflow integration with other GCP products.
+
 Prerequisites
 -
 1. Install Maven.
@@ -11,6 +13,10 @@ Prerequisites
 WordCountSum
 -
 Check how many types a certain word shows up in Hamlet.
-```$ mvn -Pdataflow-runner compile exec:java -Dexec.mainClass=ro.robertsicoie.gcp.dataflow.WordCountSum \ -Dexec.args="--project=<PROJECT_ID> --stagingLocation=gs://<BUCKET>/staging/ --output=gs://<BUCKET>/output/ --runner=DataFlowRunner"```
+```
+$ mvn -Pdataflow-runner compile exec:java \
+    -Dexec.mainClass=ro.robertsicoie.gcp.dataflow.WordCountSum \
+    -Dexec.args="--project=<PROJECT_ID> --stagingLocation=gs://<BUCKET>/staging/ --output=gs://<BUCKET>/output/ --runner=DataFlowRunner"
+```
 
 Check output bucket.

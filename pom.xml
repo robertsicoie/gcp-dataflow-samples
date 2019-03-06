@@ -41,8 +41,25 @@
 
   <profiles>
     <profile>
+      <id>direct-runner</id>
+
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.beam</groupId>
+          <artifactId>beam-runners-direct-java</artifactId>
+          <version>${beam.version}</version>
+          <scope>runtime</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
       <id>dataflow-runner</id>
-      <!-- Makes the DataflowRunner available when running a pipeline. -->
+
       <dependencies>
         <dependency>
           <groupId>org.apache.beam</groupId>
